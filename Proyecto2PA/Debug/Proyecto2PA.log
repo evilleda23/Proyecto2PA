@@ -1,0 +1,7 @@
+﻿  Main.cpp
+C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Main.h(140,45): warning C4101: 'ae': variable local sin referencia
+  Registrarse.cpp
+  Generando código...
+C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Main.h(143,42): warning C4101: 'ae': variable local sin referencia
+  AgregarTarea.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Proyecto2PA.vcxproj -> C:\Users\estua\source\repos\Proyecto2PA\Debug\Proyecto2PA.exe
