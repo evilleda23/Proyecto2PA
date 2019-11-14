@@ -43,6 +43,8 @@ namespace Proyecto2PA {
 	private: System::Windows::Forms::Button^ btnCargarUsuario;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::LinkLabel^ linkLRegis;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TextBox^ txtCon;
 
 	protected:
 
@@ -64,6 +66,8 @@ namespace Proyecto2PA {
 			this->btnCargarUsuario = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->linkLRegis = (gcnew System::Windows::Forms::LinkLabel());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->txtCon = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// txtUsuario
@@ -78,13 +82,13 @@ namespace Proyecto2PA {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(65, 34);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(43, 13);
+			this->label1->Size = System::Drawing::Size(46, 13);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"Usuario";
+			this->label1->Text = L"Usuario:";
 			// 
 			// btnCargarUsuario
 			// 
-			this->btnCargarUsuario->Location = System::Drawing::Point(80, 79);
+			this->btnCargarUsuario->Location = System::Drawing::Point(68, 125);
 			this->btnCargarUsuario->Name = L"btnCargarUsuario";
 			this->btnCargarUsuario->Size = System::Drawing::Size(71, 23);
 			this->btnCargarUsuario->TabIndex = 2;
@@ -95,7 +99,7 @@ namespace Proyecto2PA {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(41, 134);
+			this->label2->Location = System::Drawing::Point(48, 168);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(104, 13);
 			this->label2->TabIndex = 4;
@@ -104,7 +108,7 @@ namespace Proyecto2PA {
 			// linkLRegis
 			// 
 			this->linkLRegis->AutoSize = true;
-			this->linkLRegis->Location = System::Drawing::Point(157, 134);
+			this->linkLRegis->Location = System::Drawing::Point(164, 168);
 			this->linkLRegis->Name = L"linkLRegis";
 			this->linkLRegis->Size = System::Drawing::Size(56, 13);
 			this->linkLRegis->TabIndex = 5;
@@ -112,11 +116,29 @@ namespace Proyecto2PA {
 			this->linkLRegis->Text = L"Pulsa aqui";
 			this->linkLRegis->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Main::linkLRegis_LinkClicked);
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(65, 80);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(64, 13);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"Contraseña:";
+			// 
+			// txtCon
+			// 
+			this->txtCon->Location = System::Drawing::Point(65, 99);
+			this->txtCon->Name = L"txtCon";
+			this->txtCon->Size = System::Drawing::Size(114, 20);
+			this->txtCon->TabIndex = 6;
+			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(242, 164);
+			this->ClientSize = System::Drawing::Size(248, 201);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->txtCon);
 			this->Controls->Add(this->linkLRegis);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->btnCargarUsuario);
@@ -130,12 +152,19 @@ namespace Proyecto2PA {
 		}
 #pragma endregion
 	private: System::Void btnCargarUsuario_Click(System::Object^ sender, System::EventArgs^ e) {
-		System::String^ usuario ="..//"+txtUsuario->Text+".txt";
+		
 		try {
-			StreamReader^ streamReader = gcnew StreamReader(usuario);
-			MyForm^ form = gcnew MyForm();
-			form->Show();
-			this->Hide();
+			
+			StreamReader^ usuario = gcnew StreamReader("..//" + txtUsuario->Text + ".txt");
+			if (txtCon->Text->Equals(usuario->ReadLine())) {
+				MessageBox::Show("Carga de datos exitosa");
+				MyForm^ form = gcnew MyForm();
+				form->Show();
+				this->Hide();
+			}
+			else {
+				MessageBox::Show("Contraseña incorrecta");
+			}
 		}
 		catch (System::IO::FileNotFoundException^ ae) {
 			MessageBox::Show("Usuario no encontrado, Regístrate");

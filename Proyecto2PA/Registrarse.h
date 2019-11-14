@@ -1,5 +1,5 @@
 #pragma once
-
+#include "MyForm.h"
 namespace Proyecto2PA {
 
 	using namespace System;
@@ -34,7 +34,9 @@ namespace Proyecto2PA {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ txtCon;
+	protected:
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
@@ -56,7 +58,7 @@ namespace Proyecto2PA {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtCon = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -64,12 +66,12 @@ namespace Proyecto2PA {
 			this->btnRegistrar = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// txtCon
 			// 
-			this->textBox1->Location = System::Drawing::Point(80, 82);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 0;
+			this->txtCon->Location = System::Drawing::Point(80, 122);
+			this->txtCon->Name = L"txtCon";
+			this->txtCon->Size = System::Drawing::Size(100, 20);
+			this->txtCon->TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -83,16 +85,16 @@ namespace Proyecto2PA {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(80, 63);
+			this->label2->Location = System::Drawing::Point(80, 103);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(47, 13);
+			this->label2->Size = System::Drawing::Size(64, 13);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"Nombre:";
+			this->label2->Text = L"Contraseña:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(80, 106);
+			this->label3->Location = System::Drawing::Point(80, 59);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(46, 13);
 			this->label3->TabIndex = 4;
@@ -100,7 +102,7 @@ namespace Proyecto2PA {
 			// 
 			// txtusuario
 			// 
-			this->txtusuario->Location = System::Drawing::Point(80, 122);
+			this->txtusuario->Location = System::Drawing::Point(80, 75);
 			this->txtusuario->Name = L"txtusuario";
 			this->txtusuario->Size = System::Drawing::Size(100, 20);
 			this->txtusuario->TabIndex = 3;
@@ -125,7 +127,7 @@ namespace Proyecto2PA {
 			this->Controls->Add(this->txtusuario);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtCon);
 			this->Name = L"Registrarse";
 			this->Text = L"Registrarse";
 			this->ResumeLayout(false);
@@ -134,7 +136,43 @@ namespace Proyecto2PA {
 		}
 #pragma endregion
 	private: System::Void btnRegistrar_Click(System::Object^ sender, System::EventArgs^ e) {
-		TextWriter^ archivo = gcnew StreamWriter("..//"+txtusuario->Text+".txt"); 
+		
+		try {
+			StreamReader^ usuario = gcnew StreamReader("..//" + txtusuario->Text + ".txt");
+			if (txtCon->Text->Equals(usuario->ReadLine())) {
+				MessageBox::Show("Usuario ya existente\n Se cargaran los datos del usuario ingresado" + usuario->ReadLine());
+				MyForm^ form = gcnew MyForm();
+				form->Show();
+				this->Hide();
+			}
+			else {
+				MessageBox::Show("Contraseña incorrecta");
+			}
+			
+
+		}
+		catch (System::IO::FileNotFoundException ^ ae) {
+			if (txtusuario->Text->Equals("") || txtusuario->Text->Equals(" ") || txtCon->Text->Equals("") || txtCon->Text->Equals("")) {
+				MessageBox::Show("Campos Vacíos, vuelve a intentarlo", "Advertencia");
+			}
+			else {
+				TextWriter^ archivo = gcnew StreamWriter("..//" + txtusuario->Text + ".txt");
+				archivo->Close();
+				StreamWriter^ streamwriter = gcnew StreamWriter("..//" + txtusuario->Text + ".txt");
+				streamwriter->Write(txtCon->Text);
+				streamwriter->Close();
+				MyForm^ form = gcnew MyForm();
+				form->Show();
+				this->Hide();
+			}
+			
+		}
+		catch (System::NotSupportedException ^ ae) {
+			MessageBox::Show("Error en la carga del usuario");
+		}
+
+	
+		
 	}
 };
 }

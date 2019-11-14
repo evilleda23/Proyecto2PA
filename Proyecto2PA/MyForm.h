@@ -1,5 +1,5 @@
 #pragma once
-
+#include "AgregarTarea.h"
 namespace Proyecto2PA {
 
 	using namespace System;
@@ -36,12 +36,13 @@ namespace Proyecto2PA {
 		}
 	private: System::Windows::Forms::MonthCalendar^ monthCalendar1;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ txtdia;
+
 	private: System::Windows::Forms::Label^ label2;
 
-	private: System::Windows::Forms::CheckBox^ checkbAct;
-	private: System::Windows::Forms::CheckBox^ checkbRecor;
-	private: System::Windows::Forms::CheckBox^ checkbAlarma;
+
+
+
 	private: System::Windows::Forms::Button^ btnAgregarT;
 
 
@@ -70,17 +71,14 @@ namespace Proyecto2PA {
 		{
 			this->monthCalendar1 = (gcnew System::Windows::Forms::MonthCalendar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtdia = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->checkbAct = (gcnew System::Windows::Forms::CheckBox());
-			this->checkbRecor = (gcnew System::Windows::Forms::CheckBox());
-			this->checkbAlarma = (gcnew System::Windows::Forms::CheckBox());
 			this->btnAgregarT = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// monthCalendar1
 			// 
-			this->monthCalendar1->Location = System::Drawing::Point(14, 100);
+			this->monthCalendar1->Location = System::Drawing::Point(14, 55);
 			this->monthCalendar1->Name = L"monthCalendar1";
 			this->monthCalendar1->ShowTodayCircle = false;
 			this->monthCalendar1->TabIndex = 1;
@@ -89,87 +87,53 @@ namespace Proyecto2PA {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(15, 57);
+			this->label1->Location = System::Drawing::Point(12, 21);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(126, 13);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Ningún día seleccionado";
 			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
-			// textBox1
+			// txtdia
 			// 
-			this->textBox1->Location = System::Drawing::Point(295, 57);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(182, 205);
-			this->textBox1->TabIndex = 3;
+			this->txtdia->Location = System::Drawing::Point(300, 18);
+			this->txtdia->Multiline = true;
+			this->txtdia->Name = L"txtdia";
+			this->txtdia->Size = System::Drawing::Size(182, 199);
+			this->txtdia->TabIndex = 3;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(324, 41);
+			this->label2->Location = System::Drawing::Point(329, 2);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(109, 13);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Datos acerca del Día";
 			// 
-			// checkbAct
-			// 
-			this->checkbAct->AutoSize = true;
-			this->checkbAct->Location = System::Drawing::Point(14, 22);
-			this->checkbAct->Name = L"checkbAct";
-			this->checkbAct->Size = System::Drawing::Size(81, 17);
-			this->checkbAct->TabIndex = 6;
-			this->checkbAct->Text = L"Actividades";
-			this->checkbAct->UseVisualStyleBackColor = true;
-			this->checkbAct->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkbAct_CheckedChanged);
-			// 
-			// checkbRecor
-			// 
-			this->checkbRecor->AutoSize = true;
-			this->checkbRecor->Location = System::Drawing::Point(100, 22);
-			this->checkbRecor->Name = L"checkbRecor";
-			this->checkbRecor->Size = System::Drawing::Size(92, 17);
-			this->checkbRecor->TabIndex = 7;
-			this->checkbRecor->Text = L"Recordatorios";
-			this->checkbRecor->UseVisualStyleBackColor = true;
-			this->checkbRecor->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkbRecor_CheckedChanged);
-			// 
-			// checkbAlarma
-			// 
-			this->checkbAlarma->AutoSize = true;
-			this->checkbAlarma->Location = System::Drawing::Point(198, 22);
-			this->checkbAlarma->Name = L"checkbAlarma";
-			this->checkbAlarma->Size = System::Drawing::Size(58, 17);
-			this->checkbAlarma->TabIndex = 8;
-			this->checkbAlarma->Text = L"Alarma";
-			this->checkbAlarma->UseVisualStyleBackColor = true;
-			this->checkbAlarma->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkbAlarma_CheckedChanged);
-			// 
 			// btnAgregarT
 			// 
-			this->btnAgregarT->Location = System::Drawing::Point(157, 57);
+			this->btnAgregarT->Location = System::Drawing::Point(163, 12);
 			this->btnAgregarT->Name = L"btnAgregarT";
 			this->btnAgregarT->Size = System::Drawing::Size(99, 31);
 			this->btnAgregarT->TabIndex = 9;
 			this->btnAgregarT->Text = L"Agregar Tarea";
 			this->btnAgregarT->UseVisualStyleBackColor = true;
+			this->btnAgregarT->Click += gcnew System::EventHandler(this, &MyForm::btnAgregarT_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(504, 271);
+			this->ClientSize = System::Drawing::Size(504, 232);
 			this->Controls->Add(this->btnAgregarT);
-			this->Controls->Add(this->checkbAlarma);
-			this->Controls->Add(this->checkbRecor);
-			this->Controls->Add(this->checkbAct);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtdia);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->monthCalendar1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -186,35 +150,14 @@ namespace Proyecto2PA {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-private: System::Void checkbAct_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (checkbAct->Checked) {
-		checkbRecor->Enabled = false;
-		checkbAlarma->Enabled = false;
-	}
-	else {
-		checkbRecor->Enabled = true;
-		checkbAlarma->Enabled = true;
-	}
+
+private: System::Void btnAgregarT_Click(System::Object^ sender, System::EventArgs^ e) {
+	AgregarTarea^ task = gcnew AgregarTarea();
+	task->Show();
+	
 }
-private: System::Void checkbRecor_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (checkbRecor->Checked) {
-		checkbAct->Enabled = false;
-		checkbAlarma->Enabled = false;
-	}
-	else {
-		checkbAct->Enabled = true;
-		checkbAlarma->Enabled = true;
-	}
-}
-private: System::Void checkbAlarma_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (checkbAlarma->Checked) {
-		checkbAct->Enabled = false;
-		checkbRecor->Enabled = false;
-	}
-	else {
-		checkbAct->Enabled = true;
-		checkbRecor->Enabled = true;
-	}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	txtdia->Text = "Aún no tienes tareas wapo";
 }
 };
 	}
