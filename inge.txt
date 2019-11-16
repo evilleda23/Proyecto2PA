@@ -1,0 +1,3 @@
+
+ Fecha:Día seleccionado : 14 / 11 /2019  Hora inicio:5:00 Prioridad:AltoRecordatorio:mi proyecto
+ Fecha:Día seleccionado : 14 / 11 /2019  Hora inicio:5:00 Hora final: 6:00 Prioridad:AltoActividad: no se ID123

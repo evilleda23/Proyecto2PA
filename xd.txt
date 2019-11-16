@@ -1,3 +1,2 @@
-xd
- Fecha:Ningún día seleccionado  Hora inicio:sas:00 Hora final: as:00 Prioridad:MedioActividad: saas IDsas
- Fecha:Ningún día seleccionado  Hora inicio:dsd:00Alarma: dsd
+
+ Fecha:NingÃºn dÃ­a seleccionado  Hora inicio:9:46:00 Hora final: 10:00 Prioridad:AltoActividad: hola ID123

@@ -452,16 +452,10 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (MessageBox::Show(System::Convert::ToString(""), "Recordatorio", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
-	{
-		MessageBox::Show("Bueno se borraran las tareas dia", "TERMINAR");
-	}
-	else
-	{
-		MessageBox::Show("5 mins mas :D", "APLAZAR");
-	}
+	
 }
 	   String^ textoDelArchivo;
+	   
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 	StreamReader^ texto = gcnew StreamReader("..//" + usuario + ".txt");
 	
@@ -469,41 +463,65 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	texto->Close();
 	txtdia->Text = textoDelArchivo;
 	
-
+	if (txtinicio->Text == DateTime::Now.ToString("H:mm")) {
+		if (alarm) {
+			SoundPlayer^ Player = gcnew SoundPlayer();
+			Player->SoundLocation = "..//alarma.wav";
+			Player->Play();
+			if (MessageBox::Show("Alarma", "Recordatorio", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+			{
+				MessageBox::Show("Detener");
+				Player->Stop();
+			}
+			else
+			{
+				MessageBox::Show("Aplazar");
+				Player->Stop();
+				
+			}
+		}
+		else if(recor) {
+			MessageBox::Show("Recordatorio: "+txtdescrip->Text);
+		}
+		else if (act) {
+			MessageBox::Show("Actividad"+txtdescrip->Text);
+		}
+		//timer1->Enabled = false;
+	}
 	
 }
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	SoundPlayer^	Player = gcnew SoundPlayer();
-	Player->SoundLocation = "..//alarma.wav";
-	Player->Play();
-	Lista *l;
+	
+	//Lista *l;
 	//l->obtenerdato(txtid->Text);
 }
+	   bool act = false, recor = false, alarm = false;
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	StreamWriter^ streamwriter = gcnew StreamWriter("..//" + usuario + ".txt");
 	
-	if (checkbAlarma->Checked || checkbAct->Checked || checkbRecor->Checked && txtid->Text != "" && txtdescrip->Text != ""&& Convert::ToInt16(txtid->Text) <0 && Convert::ToInt16(txtinicio->Text)>0 && Convert::ToInt16(txtfin->Text)>0) {
+	if (checkbAlarma->Checked || checkbAct->Checked || checkbRecor->Checked && txtid->Text != "" && txtdescrip->Text != "") {
 		if (checkbAct->Checked && txtinicio->Text != "" && txtinicio->Text != " " && txtfin->Text != "" && txtfin->Text != " " && listPrioridad->SelectedItem != "") {
 			//String^ nombre= "Actividad" + txtid->Text;
-			Eventos*  nomb  = new Eventos();
-			nomb->ID = System::Convert::ToInt16(txtid->Text);
-			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
-			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
-			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
-			Lista* l = new Lista();
-			l->insertarlista(nomb);
+			//Eventos*  nomb  = new Eventos();
+			//nomb->ID = System::Convert::ToInt16(txtid->Text);
+			//nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			//nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			////nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			//Lista* l = new Lista();
+			//l->insertarlista(nomb);
+			act = true;
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + " Hora final: " + txtfin->Text + ":00" + " Prioridad:" + listPrioridad->SelectedItem->ToString() + "Actividad: " + txtdescrip->Text + " ID" + txtid->Text;
 			streamwriter->Write(textoDelArchivo);
 		}
-		else		if (checkbRecor->Checked && txtinicio->Text != "" && txtinicio->Text != " " && listPrioridad->SelectedItem != "") {
-			
-			Eventos* nomb = new Eventos();
-			nomb->ID = System::Convert::ToInt16(txtid->Text);
-			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
-			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
-			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
-			Lista* l = new Lista();
-			l->insertarlista(nomb); 
+		else if (checkbRecor->Checked && txtinicio->Text != "" && txtinicio->Text != " " && listPrioridad->SelectedItem != "") {
+			recor = true;
+			//Eventos* nomb = new Eventos();
+			//nomb->ID = System::Convert::ToInt16(txtid->Text);
+			//nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			//nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			////nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			//Lista* l = new Lista();
+			//l->insertarlista(nomb); 
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + " Prioridad:" + listPrioridad->SelectedItem->ToString() + "Recordatorio: " + txtdescrip->Text;
 			streamwriter->Write(textoDelArchivo);
 
@@ -511,12 +529,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		else if (checkbAlarma->Checked && txtinicio->Text != "" && txtinicio->Text != " " && listPrioridad->SelectedItem != "") {
 			Eventos* nomb = new Eventos();
-			nomb->ID = System::Convert::ToInt16(txtid->Text);
-			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
-			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
-			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
-			Lista* l = new Lista();
-			l->insertarlista(nomb);
+			alarm = true;
+			//nomb->ID = System::Convert::ToInt16(txtid->Text);
+			//nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			//nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			////nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			//Lista* l = new Lista();
+			//l->insertarlista(nomb);
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + "Alarma: " + txtdescrip->Text;
 			streamwriter->Write(textoDelArchivo);
 		}
@@ -534,6 +553,15 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	streamwriter->Close();
 	timer1->Enabled = true;
+	checkbAct->Enabled = false;
+	checkbRecor->Enabled = false;
+	checkbAlarma->Enabled = false;
+	txtinicio->Enabled = false;
+	txtfin->Enabled = false;
+	listPrioridad->Enabled = false;
+	txtid->Enabled = false;
+	txtdescrip->Enabled = false;
+	btnac->Enabled = false;
 }
 private: System::Void checkbAct_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	if (checkbAct->Checked) {
