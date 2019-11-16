@@ -1,9 +1,11 @@
 #pragma once
-
+#include <stdio.h>
 class Eventos
 {
 public:
-	System::String^ *descripcion;
+	int ID;
+	int hora;
+	char descripcion[100];
 	
 };
 

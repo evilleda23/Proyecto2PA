@@ -4,40 +4,47 @@ Lista::Lista() {
 	sig = nullptr;
 }
 
-void Lista::insertarlista(int n) {
+void Lista::insertarlista(Eventos n) {
 
 	
 	if ( sig== nullptr) {
 		sig = new Nodo();
-		sig->dato = n;
+		sig->Tipo = n;
 		sig->sig = nullptr;
-
+		
 	}
 	else {
 		Nodo* nuevoN = new Nodo();
-		nuevoN->dato = n;
+		nuevoN->Tipo = n;
 		nuevoN->sig = sig;
 		sig = nuevoN;
 	}
 }
 
 
-//Eventos obtenerdato( Eventos valorBus){
-//	return valorBus;
-//}
-
-System::String^ Lista::mostrarListaDoble(Nodo*& pos) {
-
-	if (pos != nullptr) {
-		if (pos->sig == nullptr) {
-			return System::Convert::ToString(pos->dato);
-		}
-		else {
-			return System::Convert::ToString(pos->dato) + "\n" + mostrarListaDoble(pos->sig);
-		}
+Eventos Lista::obtenerdato( Eventos valorBus, Nodo*& xd){
+	if (valorBus.ID == sig->Tipo.ID) {
+		return valorBus;
 	}
 	else {
-		return "--";
+		return obtenerdato(valorBus, xd->sig);
 	}
-
+	
 }
+
+//System::String^ Lista::mostrarListaDoble(Nodo*& pos) {
+//
+//	if (pos != nullptr) {
+//		if (pos->sig == nullptr) {
+//			return System::Convert::ToString(pos->t
+//			);
+//		}
+//		else {
+//			return System::Convert::ToString(pos->dato) + "\n" + mostrarListaDoble(pos->sig);
+//		}
+//	}
+//	else {
+//		return "--";
+//	}
+//
+//}

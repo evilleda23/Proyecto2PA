@@ -133,18 +133,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actividad.cpp" />
     <ClCompile Include="AgregarTarea.cpp" />
+    <ClCompile Include="Alarma.cpp" />
     <ClCompile Include="Eventos.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nodo.cpp" />
+    <ClCompile Include="Recordatorio.cpp" />
     <ClCompile Include="Registrarse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AgregarTarea.h">
+    <ClInclude Include="Actividad.h" />
+    <ClInclude Include="EditarTarea.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Alarma.h" />
     <ClInclude Include="Eventos.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="Main.h">
@@ -154,13 +159,14 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Nodo.h" />
+    <ClInclude Include="Recordatorio.h" />
     <ClInclude Include="Registrarse.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AgregarTarea.resx">
-      <DependentUpon>AgregarTarea.h</DependentUpon>
+    <EmbeddedResource Include="EditarTarea.resx">
+      <DependentUpon>EditarTarea.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.h</DependentUpon>
@@ -171,6 +177,9 @@
     <EmbeddedResource Include="Registrarse.resx">
       <DependentUpon>Registrarse.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Videos\videoplayback.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

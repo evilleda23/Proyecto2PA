@@ -157,7 +157,6 @@ namespace Proyecto2PA {
 			
 			
 			StreamReader^ usuario = gcnew StreamReader("..//" + txtUsuario->Text + ".txt");
-			
 			if (txtCon->Text->Equals(usuario->ReadLine())) {
 				String^ textoDelArchivo = usuario->ReadToEnd();
 				usuario->Close();

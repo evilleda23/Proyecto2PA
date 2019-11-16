@@ -1,4 +1,4 @@
-  Proyecto2PA.AgregarTarea.resources - Embedded, ContainedInManifestFile, 
+  Proyecto2PA.EditarTarea.resources - Embedded, ContainedInManifestFile, 
   Proyecto2PA.Main.resources - Embedded, ContainedInManifestFile, 
   Proyecto2PA.MyForm.resources - Embedded, ContainedInManifestFile, 
   Proyecto2PA.Registrarse.resources - Embedded, ContainedInManifestFile, 
@@ -19,7 +19,7 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 	hash=None, flags=None
 Class Proyecto2PA.AgregarTarea: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(System.String, System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Proyecto2PA.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
