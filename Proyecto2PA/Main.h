@@ -155,10 +155,14 @@ namespace Proyecto2PA {
 		
 		try {
 			
+			
 			StreamReader^ usuario = gcnew StreamReader("..//" + txtUsuario->Text + ".txt");
+			
 			if (txtCon->Text->Equals(usuario->ReadLine())) {
+				String^ textoDelArchivo = usuario->ReadToEnd();
+				usuario->Close();
 				MessageBox::Show("Carga de datos exitosa");
-				MyForm^ form = gcnew MyForm();
+				MyForm^ form = gcnew MyForm(txtUsuario->Text, textoDelArchivo);
 				form->Show();
 				this->Hide();
 			}

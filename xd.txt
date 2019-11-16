@@ -1,1 +1,4 @@
 xd
+ Fecha:Ningún día seleccionado  Hora inicio:2:00 Hora final: 2121:00 Prioridad:BajoActividad: 2edsds ID121
+ Fecha:Día seleccionado : 20 / 11 /2019  Hora inicio:fdf:00 Prioridad:BajoRecordatorio: fdf
+ Fecha:Ningún día seleccionado  Hora inicio:3:00Alarma: dsada

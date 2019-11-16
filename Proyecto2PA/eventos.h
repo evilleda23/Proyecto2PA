@@ -1,5 +1,9 @@
 #pragma once
-ref class eventos
+
+class Eventos
 {
+public:
+	System::String^ *descripcion;
+	
 };
 

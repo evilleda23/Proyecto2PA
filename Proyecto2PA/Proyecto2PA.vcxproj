@@ -134,17 +134,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AgregarTarea.cpp" />
-    <ClCompile Include="eventos.cpp" />
+    <ClCompile Include="Eventos.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="Registrarse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AgregarTarea.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="eventos.h" />
+    <ClInclude Include="Eventos.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="Main.h">
       <FileType>CppForm</FileType>
@@ -152,6 +153,7 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Registrarse.h">
       <FileType>CppForm</FileType>
     </ClInclude>

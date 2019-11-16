@@ -1,5 +1,6 @@
 #pragma once
 #include "AgregarTarea.h"
+#include "Lista.h"
 namespace Proyecto2PA {
 
 	using namespace System;
@@ -8,12 +9,16 @@ namespace Proyecto2PA {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Resumen de MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+		System::String^ usuario = "";
+	private: System::Windows::Forms::Button^ button1;
+		   System::String^ datos = "";
 	public:
 		MyForm(void)
 		{
@@ -21,6 +26,15 @@ namespace Proyecto2PA {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+		}
+		MyForm(System::String^ usu, System::String^ dat)
+		{
+			InitializeComponent();
+			//
+			//TODO: agregar código de constructor aquí
+			//
+			usuario = usu;
+			datos = dat;
 		}
 
 	protected:
@@ -74,6 +88,7 @@ namespace Proyecto2PA {
 			this->txtdia = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->btnAgregarT = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// monthCalendar1
@@ -113,19 +128,30 @@ namespace Proyecto2PA {
 			// 
 			// btnAgregarT
 			// 
-			this->btnAgregarT->Location = System::Drawing::Point(163, 12);
+			this->btnAgregarT->Location = System::Drawing::Point(176, 12);
 			this->btnAgregarT->Name = L"btnAgregarT";
-			this->btnAgregarT->Size = System::Drawing::Size(99, 31);
+			this->btnAgregarT->Size = System::Drawing::Size(86, 31);
 			this->btnAgregarT->TabIndex = 9;
 			this->btnAgregarT->Text = L"Agregar Tarea";
 			this->btnAgregarT->UseVisualStyleBackColor = true;
 			this->btnAgregarT->Click += gcnew System::EventHandler(this, &MyForm::btnAgregarT_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(274, 18);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(20, 199);
+			this->button1->TabIndex = 10;
+			this->button1->Text = L"ACTUALIZAR";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(504, 232);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->btnAgregarT);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txtdia);
@@ -139,10 +165,11 @@ namespace Proyecto2PA {
 
 		}
 #pragma endregion
-	
+		
+		
 	private: System::Void monthCalendar1_DateChanged(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
 		//Display the dates for selected range
-		label1->Text = "Día seleccionado : " + (monthCalendar1->SelectionRange->Start);
+		label1->Text = "Día seleccionado : " + (monthCalendar1->SelectionRange->Start.ToString("dd / MM /yyyy"));
 
 		//To display single selected of date
 		monthCalendar1->MaxSelectionCount = 1;
@@ -152,12 +179,26 @@ namespace Proyecto2PA {
 
 
 private: System::Void btnAgregarT_Click(System::Object^ sender, System::EventArgs^ e) {
-	AgregarTarea^ task = gcnew AgregarTarea();
+	Lista* lista = new Lista();
+	StreamReader^ texto = gcnew StreamReader("..//" + usuario + ".txt");
+	String^ textoDelArchivo = texto->ReadToEnd();
+	texto->Close();
+	AgregarTarea^ task = gcnew AgregarTarea(usuario, label1->Text, textoDelArchivo);
 	task->Show();
-	
+	//lista->insertarlista(5);
 }
+	   
 private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	txtdia->Text = "Aún no tienes tareas wapo";
+	Lista* lista = new Lista();
+	
+	txtdia->Text = datos;
+
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	StreamReader^ texto = gcnew StreamReader("..//" + usuario+ ".txt");
+	String^ textoDelArchivo = texto->ReadToEnd();
+	texto->Close();
+	txtdia->Text = textoDelArchivo;
 }
 };
 	}

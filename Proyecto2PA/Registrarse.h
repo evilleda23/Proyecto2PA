@@ -139,9 +139,10 @@ namespace Proyecto2PA {
 		
 		try {
 			StreamReader^ usuario = gcnew StreamReader("..//" + txtusuario->Text + ".txt");
+			String^ textoDelArchivo = usuario->ReadToEnd();
 			if (txtCon->Text->Equals(usuario->ReadLine())) {
 				MessageBox::Show("Usuario ya existente\n Se cargaran los datos del usuario ingresado" + usuario->ReadLine());
-				MyForm^ form = gcnew MyForm();
+				MyForm^ form = gcnew MyForm(txtusuario->Text, textoDelArchivo);
 				form->Show();
 				this->Hide();
 			}
@@ -157,11 +158,15 @@ namespace Proyecto2PA {
 			}
 			else {
 				TextWriter^ archivo = gcnew StreamWriter("..//" + txtusuario->Text + ".txt");
+				
 				archivo->Close();
 				StreamWriter^ streamwriter = gcnew StreamWriter("..//" + txtusuario->Text + ".txt");
 				streamwriter->Write(txtCon->Text);
 				streamwriter->Close();
-				MyForm^ form = gcnew MyForm();
+				StreamReader^ texto = gcnew StreamReader("..//" + txtusuario->Text + ".txt");
+				String^ textoDelArchivo = texto->ReadToEnd();
+				texto->Close();
+				MyForm^ form = gcnew MyForm(txtusuario->Text, textoDelArchivo);
 				form->Show();
 				this->Hide();
 			}
