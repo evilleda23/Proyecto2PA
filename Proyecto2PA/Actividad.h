@@ -2,8 +2,9 @@
 #include "Eventos.h"
 #include <stdio.h>
 
- class Actividad : Eventos
-{
+ class Actividad : public Eventos
+{public:
+	Actividad(); 
 	 int horafin;
 	 char descripcion[100];
 };

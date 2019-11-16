@@ -6,8 +6,8 @@ public:
 	//String^ hola;
 	Nodo* sig;
 	Lista::Lista();
-	void insertarlista(Eventos);
-	Eventos obtenerdato(Eventos, Nodo*&);
+	void insertarlista(Eventos*&);
+	System::String^ obtenerdato(int);
 	
 };
 

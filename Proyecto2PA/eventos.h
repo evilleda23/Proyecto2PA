@@ -1,11 +1,11 @@
 #pragma once
-#include <stdio.h>
+#include <string>
 class Eventos
 {
 public:
 	int ID;
 	int hora;
-	char descripcion[100];
+	std::string descripcion;
 	
 };
 

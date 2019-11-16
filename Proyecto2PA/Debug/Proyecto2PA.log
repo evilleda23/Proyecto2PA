@@ -1,10 +1,13 @@
 ﻿  Main.cpp
+C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\MyForm.h(479,9): warning C4101: 'l': variable local sin referencia
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Registrarse.h(155,46): warning C4101: 'ae': variable local sin referencia
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Registrarse.h(175,42): warning C4101: 'ae': variable local sin referencia
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Main.h(172,45): warning C4101: 'ae': variable local sin referencia
   MyForm.cpp
-  Registrarse.cpp
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Main.h(175,42): warning C4101: 'ae': variable local sin referencia
+  Registrarse.cpp
+C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\MyForm.h(479,9): warning C4101: 'l': variable local sin referencia
+C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\MyForm.h(479,9): warning C4101: 'l': variable local sin referencia
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Registrarse.h(155,46): warning C4101: 'ae': variable local sin referencia
   Generando código...
 C:\Users\estua\source\repos\Proyecto2PA\Proyecto2PA\Registrarse.h(175,42): warning C4101: 'ae': variable local sin referencia

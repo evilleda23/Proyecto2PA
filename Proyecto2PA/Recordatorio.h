@@ -1,5 +1,7 @@
 #pragma once
-ref class Recordatorio
-{
+#include "Eventos.h"
+ class Recordatorio: public Eventos
+{public:
+	 char prioridad[100];
 };
 

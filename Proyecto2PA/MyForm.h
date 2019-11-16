@@ -1,7 +1,11 @@
 #pragma once
 #include "EditarTarea.h"
 #include "Lista.h"
-
+#include "Eventos.h"
+#include "Actividad.h"
+#include "Alarma.h"
+#include "Recordatorio.h"
+#include <msclr\marshal_cppstd.h>
 namespace Proyecto2PA {
 
 	using namespace System;
@@ -22,8 +26,8 @@ namespace Proyecto2PA {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ txtd;
+
+
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Button^ btnac;
@@ -118,8 +122,6 @@ namespace Proyecto2PA {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->txtd = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->btnac = (gcnew System::Windows::Forms::Button());
@@ -180,7 +182,7 @@ namespace Proyecto2PA {
 			// 
 			this->btnAgregarT->Location = System::Drawing::Point(297, 8);
 			this->btnAgregarT->Name = L"btnAgregarT";
-			this->btnAgregarT->Size = System::Drawing::Size(182, 24);
+			this->btnAgregarT->Size = System::Drawing::Size(100, 24);
 			this->btnAgregarT->TabIndex = 9;
 			this->btnAgregarT->Text = L"Agregar Tarea";
 			this->btnAgregarT->UseVisualStyleBackColor = true;
@@ -212,30 +214,11 @@ namespace Proyecto2PA {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click_1);
 			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(526, 42);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(109, 13);
-			this->label4->TabIndex = 15;
-			this->label4->Text = L"Datos acerca del Día";
-			// 
-			// txtd
-			// 
-			this->txtd->Enabled = false;
-			this->txtd->Location = System::Drawing::Point(497, 58);
-			this->txtd->Multiline = true;
-			this->txtd->Name = L"txtd";
-			this->txtd->ReadOnly = true;
-			this->txtd->Size = System::Drawing::Size(182, 199);
-			this->txtd->TabIndex = 14;
-			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(497, 8);
+			this->button3->Location = System::Drawing::Point(403, 9);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(182, 23);
+			this->button3->Size = System::Drawing::Size(111, 23);
 			this->button3->TabIndex = 16;
 			this->button3->Text = L"Actualizar/Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -244,13 +227,13 @@ namespace Proyecto2PA {
 			// timer1
 			// 
 			this->timer1->Enabled = true;
-			this->timer1->Interval = 1000;
+			this->timer1->Interval = 6000;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
 			// btnac
 			// 
 			this->btnac->Enabled = false;
-			this->btnac->Location = System::Drawing::Point(817, 238);
+			this->btnac->Location = System::Drawing::Point(627, 242);
 			this->btnac->Name = L"btnac";
 			this->btnac->Size = System::Drawing::Size(75, 23);
 			this->btnac->TabIndex = 38;
@@ -262,7 +245,7 @@ namespace Proyecto2PA {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Enabled = false;
-			this->label6->Location = System::Drawing::Point(855, 95);
+			this->label6->Location = System::Drawing::Point(665, 99);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(48, 13);
 			this->label6->TabIndex = 37;
@@ -273,7 +256,7 @@ namespace Proyecto2PA {
 			this->listPrioridad->Enabled = false;
 			this->listPrioridad->FormattingEnabled = true;
 			this->listPrioridad->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Alto", L"Medio", L"Bajo" });
-			this->listPrioridad->Location = System::Drawing::Point(909, 92);
+			this->listPrioridad->Location = System::Drawing::Point(719, 96);
 			this->listPrioridad->Name = L"listPrioridad";
 			this->listPrioridad->Size = System::Drawing::Size(100, 21);
 			this->listPrioridad->TabIndex = 36;
@@ -282,7 +265,7 @@ namespace Proyecto2PA {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->Enabled = false;
-			this->label5->Location = System::Drawing::Point(882, 54);
+			this->label5->Location = System::Drawing::Point(692, 58);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(21, 13);
 			this->label5->TabIndex = 35;
@@ -291,7 +274,7 @@ namespace Proyecto2PA {
 			// txtid
 			// 
 			this->txtid->Enabled = false;
-			this->txtid->Location = System::Drawing::Point(909, 54);
+			this->txtid->Location = System::Drawing::Point(719, 58);
 			this->txtid->Name = L"txtid";
 			this->txtid->Size = System::Drawing::Size(100, 20);
 			this->txtid->TabIndex = 34;
@@ -300,7 +283,7 @@ namespace Proyecto2PA {
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Enabled = false;
-			this->label7->Location = System::Drawing::Point(715, 117);
+			this->label7->Location = System::Drawing::Point(525, 121);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(66, 13);
 			this->label7->TabIndex = 33;
@@ -309,7 +292,7 @@ namespace Proyecto2PA {
 			// txtdescrip
 			// 
 			this->txtdescrip->Enabled = false;
-			this->txtdescrip->Location = System::Drawing::Point(715, 136);
+			this->txtdescrip->Location = System::Drawing::Point(525, 140);
 			this->txtdescrip->Multiline = true;
 			this->txtdescrip->Name = L"txtdescrip";
 			this->txtdescrip->Size = System::Drawing::Size(294, 96);
@@ -319,7 +302,7 @@ namespace Proyecto2PA {
 			// 
 			this->label8->AutoSize = true;
 			this->label8->Enabled = false;
-			this->label8->Location = System::Drawing::Point(712, 42);
+			this->label8->Location = System::Drawing::Point(522, 46);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(116, 13);
 			this->label8->TabIndex = 31;
@@ -329,7 +312,7 @@ namespace Proyecto2PA {
 			// 
 			this->label9->AutoSize = true;
 			this->label9->Enabled = false;
-			this->label9->Location = System::Drawing::Point(711, 92);
+			this->label9->Location = System::Drawing::Point(521, 96);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(52, 13);
 			this->label9->TabIndex = 30;
@@ -339,7 +322,7 @@ namespace Proyecto2PA {
 			// 
 			this->label10->AutoSize = true;
 			this->label10->Enabled = false;
-			this->label10->Location = System::Drawing::Point(712, 61);
+			this->label10->Location = System::Drawing::Point(522, 65);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(57, 13);
 			this->label10->TabIndex = 29;
@@ -348,7 +331,7 @@ namespace Proyecto2PA {
 			// txtfin
 			// 
 			this->txtfin->Enabled = false;
-			this->txtfin->Location = System::Drawing::Point(775, 89);
+			this->txtfin->Location = System::Drawing::Point(585, 93);
 			this->txtfin->Name = L"txtfin";
 			this->txtfin->Size = System::Drawing::Size(55, 20);
 			this->txtfin->TabIndex = 28;
@@ -356,7 +339,7 @@ namespace Proyecto2PA {
 			// txtinicio
 			// 
 			this->txtinicio->Enabled = false;
-			this->txtinicio->Location = System::Drawing::Point(775, 58);
+			this->txtinicio->Location = System::Drawing::Point(585, 62);
 			this->txtinicio->Name = L"txtinicio";
 			this->txtinicio->Size = System::Drawing::Size(55, 20);
 			this->txtinicio->TabIndex = 27;
@@ -365,7 +348,7 @@ namespace Proyecto2PA {
 			// 
 			this->checkbAlarma->AutoSize = true;
 			this->checkbAlarma->Enabled = false;
-			this->checkbAlarma->Location = System::Drawing::Point(941, 6);
+			this->checkbAlarma->Location = System::Drawing::Point(751, 10);
 			this->checkbAlarma->Name = L"checkbAlarma";
 			this->checkbAlarma->Size = System::Drawing::Size(58, 17);
 			this->checkbAlarma->TabIndex = 26;
@@ -377,7 +360,7 @@ namespace Proyecto2PA {
 			// 
 			this->checkbRecor->AutoSize = true;
 			this->checkbRecor->Enabled = false;
-			this->checkbRecor->Location = System::Drawing::Point(828, 6);
+			this->checkbRecor->Location = System::Drawing::Point(638, 10);
 			this->checkbRecor->Name = L"checkbRecor";
 			this->checkbRecor->Size = System::Drawing::Size(92, 17);
 			this->checkbRecor->TabIndex = 25;
@@ -389,7 +372,7 @@ namespace Proyecto2PA {
 			// 
 			this->checkbAct->AutoSize = true;
 			this->checkbAct->Enabled = false;
-			this->checkbAct->Location = System::Drawing::Point(726, 6);
+			this->checkbAct->Location = System::Drawing::Point(536, 10);
 			this->checkbAct->Name = L"checkbAct";
 			this->checkbAct->Size = System::Drawing::Size(81, 17);
 			this->checkbAct->TabIndex = 24;
@@ -401,7 +384,7 @@ namespace Proyecto2PA {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1047, 273);
+			this->ClientSize = System::Drawing::Size(839, 273);
 			this->Controls->Add(this->btnac);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->listPrioridad);
@@ -418,8 +401,6 @@ namespace Proyecto2PA {
 			this->Controls->Add(this->checkbRecor);
 			this->Controls->Add(this->checkbAct);
 			this->Controls->Add(this->button3);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->txtd);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label3);
@@ -495,21 +476,47 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 	SoundPlayer^	Player = gcnew SoundPlayer();
 	Player->SoundLocation = "..//alarma.wav";
 	Player->Play();
+	Lista *l;
+	//l->obtenerdato(txtid->Text);
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	StreamWriter^ streamwriter = gcnew StreamWriter("..//" + usuario + ".txt");
-	if (checkbAlarma->Checked || checkbAct->Checked || checkbRecor->Checked && txtid->Text != "" && txtdescrip->Text != "") {
+	
+	if (checkbAlarma->Checked || checkbAct->Checked || checkbRecor->Checked && txtid->Text != "" && txtdescrip->Text != ""&& Convert::ToInt16(txtid->Text) <0 && Convert::ToInt16(txtinicio->Text)>0 && Convert::ToInt16(txtfin->Text)>0) {
 		if (checkbAct->Checked && txtinicio->Text != "" && txtinicio->Text != " " && txtfin->Text != "" && txtfin->Text != " " && listPrioridad->SelectedItem != "") {
+			//String^ nombre= "Actividad" + txtid->Text;
+			Eventos*  nomb  = new Eventos();
+			nomb->ID = System::Convert::ToInt16(txtid->Text);
+			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			Lista* l = new Lista();
+			l->insertarlista(nomb);
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + " Hora final: " + txtfin->Text + ":00" + " Prioridad:" + listPrioridad->SelectedItem->ToString() + "Actividad: " + txtdescrip->Text + " ID" + txtid->Text;
 			streamwriter->Write(textoDelArchivo);
 		}
 		else		if (checkbRecor->Checked && txtinicio->Text != "" && txtinicio->Text != " " && listPrioridad->SelectedItem != "") {
+			
+			Eventos* nomb = new Eventos();
+			nomb->ID = System::Convert::ToInt16(txtid->Text);
+			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			Lista* l = new Lista();
+			l->insertarlista(nomb); 
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + " Prioridad:" + listPrioridad->SelectedItem->ToString() + "Recordatorio: " + txtdescrip->Text;
 			streamwriter->Write(textoDelArchivo);
 
 
 		}
 		else if (checkbAlarma->Checked && txtinicio->Text != "" && txtinicio->Text != " " && listPrioridad->SelectedItem != "") {
+			Eventos* nomb = new Eventos();
+			nomb->ID = System::Convert::ToInt16(txtid->Text);
+			nomb->hora = System::Convert::ToInt16(txtinicio->Text);
+			nomb->descripcion = msclr::interop::marshal_as<std::string>(txtdescrip->Text->ToString());
+			//nomb ->horafin = System::Convert::ToInt16(txtfin->Text);
+			Lista* l = new Lista();
+			l->insertarlista(nomb);
 			textoDelArchivo += "\n Fecha:" + label1->Text + " " + " Hora inicio:" + txtinicio->Text + ":00" + "Alarma: " + txtdescrip->Text;
 			streamwriter->Write(textoDelArchivo);
 		}
@@ -537,6 +544,7 @@ private: System::Void checkbAct_CheckedChanged(System::Object^ sender, System::E
 		listPrioridad->Enabled = true;
 	}
 	else {
+		listPrioridad->Enabled = false;
 		txtfin->Enabled = false;
 		txtinicio->Enabled = false;
 		checkbRecor->Enabled = true;

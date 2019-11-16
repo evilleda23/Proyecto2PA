@@ -4,7 +4,7 @@ class Nodo
 {
 public:
 	//System::String^ *&dato;
-	Eventos  Tipo;
+	Eventos* Tipo;
 	Nodo* sig;
 };
 

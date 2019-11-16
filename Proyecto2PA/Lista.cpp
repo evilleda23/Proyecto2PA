@@ -4,7 +4,7 @@ Lista::Lista() {
 	sig = nullptr;
 }
 
-void Lista::insertarlista(Eventos n) {
+void Lista::insertarlista(Eventos *&n) {
 
 	
 	if ( sig== nullptr) {
@@ -22,13 +22,16 @@ void Lista::insertarlista(Eventos n) {
 }
 
 
-Eventos Lista::obtenerdato( Eventos valorBus, Nodo*& xd){
-	if (valorBus.ID == sig->Tipo.ID) {
-		return valorBus;
-	}
-	else {
-		return obtenerdato(valorBus, xd->sig);
-	}
+System::String^ Lista::obtenerdato( int valorBus){
+	
+	//Lista* l;
+	//while (l->sig != nullptr) {
+	//	if (l->sig->Tipo.ID == valorBus) {
+	//		return valorBus;
+	//	}
+	//	
+	//}
+	return valorBus.ToString();
 	
 }
 
